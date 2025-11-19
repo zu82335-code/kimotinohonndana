@@ -1,0 +1,34 @@
+<div class="taitoru">
+<h1>マイページ</h1>
+</div>
+<div class="aikonn">
+<% if @user.image.attached? %>
+<%= image_tag @user.image, class: "aikonn1" %>
+<% end %>
+</div>
+<p>アカウント名 : <%= @user.name %></p>
+<p>プロフィール（自己紹介） : <%= @user.profile %></p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+<div class="body">
+<h2>ユーザーの投稿一覧</h2>
+<% @user.tweets.each do |t| %>
+  <%= t.user.name %>
+  <%= t.body %>
+  <%= t.comment %>
+<% end %>
+
+<!-- 以下はいいね機能を実装している場合-->
+<h2>ユーザーがいいねした投稿一覧</h2>
+<% @user.liked_tweets.each do |t| %>
+  <%= t.user.name %>
+  <%= t.body %>
+  <%= t.comment %>
+<% end %>
+<!-- ここまで-->
+</div>
+
+<%= link_to "Tweet一覧に戻る", tweets_path %>

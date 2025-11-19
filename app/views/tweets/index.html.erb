@@ -1,0 +1,115 @@
+<div class="taitoru">
+<h1>きもちの本棚</h1>
+<img src="Image.jpg">
+</div>
+
+<div class="body1">
+ <h3>投稿一覧</h3>
+<div class="link-style">
+  <% if user_signed_in? %>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, style: "color: #FAF5E6; font-size:15px;" %>
+    <%= link_to "新規投稿へ", new_tweet_path, style: "color: #FAF5E6; font-size:15px;"  %>
+    <%= link_to "マイページへ", user_path(current_user.id), style: "color: #FAF5E6; font-size:15px;"  %>
+  <% else %>
+    <%= link_to "ログイン", new_user_session_path, style: "color: #FAF5E6; font-size:15px;"  %>
+    <%= link_to "新規登録", new_user_registration_path, style: "color: #FAF5E6; font-size:15px;"  %>
+  <% end %>
+</div>
+</div>
+
+<div class="top">
+ 
+   <h2>本日のおすすめ</h2>
+ <div class="random">
+   <img scr="91374_4.png">
+   <% if @tweets_post.present? %>
+    <h3><%= link_to @tweets_post.title, post_path(@tweets_post) %></h3>
+
+    <% if @tweets_post.image.attached? %>
+      <%= image_tag @tweets_post.image, style: "max-width: 300px;" %>
+    <% end %>
+
+    <p><%= @tweets_post.content %></p>
+    <% end %>
+ </div>
+
+ <div class="search-box">
+    <%= form_with url: search_tweets_path, method: :get do |f| %>
+      <%= f.text_field :search, placeholder: "検索" %>
+    <% end %>
+ </div>
+
+ <div class="search">
+   <%= form_tag tweets_path, method: :get, class: 'boards__searchForm' do %>
+    <%= select_tag :tag_id,
+                 options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                 {
+                   prompt: 'ジャンルを絞る',
+                   onchange: 'submit(this.form);'
+                 }
+    %>
+   <% end %>
+ </div>
+</div>
+
+<% @tweets.each do |t| %>
+ <% t.tags.each do |tag| %>
+    <%= tag.name %>
+ <% end %> 
+<% end %> 
+
+<div class="all">
+<div class="tweets-container">
+     <% @tweets.each do |t| %>
+  <div class="arasuji-container">
+   <div class="tweet">
+       <%= image_tag t.image_url, size: "250x200" if t.image? %>
+       <%= t.body %>
+   </div>
+   <div class="aikonn">
+     <% if t.user.image.attached? %>
+      <%= image_tag  t.user.image,class:"aikonn2" %>
+     <% end %>
+   </div> 
+   <div class="user-name">
+     <%= link_to t.user.name, user_path(t.user.id), style: "color: #FAF5E6; font-size:15px;" %>
+      <% if user_signed_in? %>
+   </div>
+   <div class="like">
+       <% if current_user.already_liked?(t) %>
+       <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), data: { turbo_method: :delete } do %>
+        <i class="fas fa-heart"></i><%= t.likes.count %>        
+      <% end %>
+      <% else %>
+      <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), data: { turbo_method: :post }  do %>
+        <i class="far fa-heart"></i><%= t.likes.count %>           
+      <% end %>
+     <% end %>
+     <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>    
+     <% end %>
+   </div>
+   </div>
+   <div class="link2">
+      <%= t.arasuji %>
+      <%= t.comment %>
+      <%= link_to "詳細へ", tweet_path(t.id), style: "color: #FAF5E6; font-size:15px;" %>  
+      <%= link_to "編集する", edit_tweet_path(t.id), style: "color: #FAF5E6; font-size:15px;" %>
+   </div>
+   <div class="botton">
+      <%= button_to "削除する", tweet_path(t.id), method: :delete, style: "color: #48402E; font-size:15px;" %>
+   </div>
+   <% end %>
+  </div>   
+
+ <div class="top-side">
+  <h2>いいね数ランキングTOP5</h2>
+    <% @rank_tweets.first(5).each_with_index do |t, i| %>
+  <div class="tweet">
+   <p><%= "#{i+1}位：" %><%= t.body %>（いいね数：<%= t.liked_users.count %>）</p>
+   <%= image_tag t.image_url, size: "250x200" if t.image? %>
+  </div>
+  <% end %>
+ </div>
+</div>
+</div>

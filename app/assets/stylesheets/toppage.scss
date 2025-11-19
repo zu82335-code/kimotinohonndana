@@ -1,0 +1,114 @@
+.body{
+    background: #FAF5E6;
+    font-family: "Noto Sans JP", sans-serif;
+    color: #48402E;
+}
+.taitoru{
+    background-image: image-url('Image.jpg');
+    background-position: center;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'noto sans Japanese';
+    color: #FAF5E6;
+    -webkit-text-stroke-color: #000000;
+    -webkit-text-stroke-width: 3px;
+}
+
+.body1{
+    background-color: #48402E;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    font-family: 'noto sans Japanese', sans-serif;
+    color: #FAF5E6;
+    margin-top: 20px;
+    padding: 6px 14px;
+    text-decoration: none;
+    font-size: 15px;
+}
+.link-style{
+    color: #FAF5E6;
+    font-family: 'noto sans Japanese', sans-serif;
+    text-decoration: none;
+}
+.link-style:hover{
+    color: #D9D9D9;
+}
+
+.top{
+    width: auto;
+    height: 670px;
+    margin: 0 auto;
+    background: #FAF5E6;
+}
+.random{
+    background-image: image-url('91374_4.png');
+    background-size: cover;
+    width: 70%;
+    height: 610px;
+    float: left;
+}
+.search-box{
+    float: left;
+}
+.search{
+    float: left;
+}
+
+.all{
+    background: #FAF5E6;
+    width: 100%;
+}
+
+.tweets-container{
+    font-family: 'noto sans Japanese', sans-serif;
+    color: #FAF5E6;
+    float:left;
+}
+.arasuji-container{
+    background: #48402E;
+    width: 100%;
+    height: auto;
+    color: #FAF5E6;
+}
+.aikonn{
+    float: left;
+}
+.user-name{
+    color: #FAF5E6;
+    font-family: 'noto sans Japanese', sans-serif;
+    text-decoration: none;
+    float: left;
+}
+.like{
+    color: #FAF5E6;
+}
+.link2{
+    color: #FAF5E6;
+    font-family: 'noto sans Japanese', sans-serif;
+    text-decoration: none;
+}
+.link-style:hover{
+    color: #D9D9D9;
+}
+.botton{
+    color: #48402E;
+    font-family: 'noto sans Japanese', sans-serif;
+    text-decoration: none;
+}
+
+
+.top-side{
+    width: 50%;
+    background: #FAF5E6; 
+    border: 2px solid #726C5C;
+    border-radius: 10px;
+    float:right;
+}
+
+.aikonn2{
+  width: 30px;        
+  height: 30px;     
+  object-fit: cover;   
+  border-radius: 50%;
+}
