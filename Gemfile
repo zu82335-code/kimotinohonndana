@@ -59,7 +59,7 @@ group :test do
 end
 gem 'devise'
 gem 'carrierwave' , '~> 1.3' ,  '>= 1.3.1'
-gem 'cloudinary', '< 2.0.0'
+gem 'cloudinary', '< 3.0.0'
 gem 'ffi'
 gem "sassc-rails"
 group :production do
